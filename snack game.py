@@ -12,7 +12,7 @@ wn.tracer(0)
 delay = 0.1
 score = 0
 high_score = 0
-#head snack
+#head snake
 head = turtle.Turtle()
 colors = random.choice(['red', 'green', 'black', 'yellow', 'pink', 'brown', 'orange', 'purple'])
 head.shape("square")
@@ -36,7 +36,7 @@ pen.penup()
 pen.hideturtle()
 pen.goto(0, 250)
 pen.write("Score : 0 , high Score : 0",align = "center", font = ("candara", 24, "bold"))
-#move snack
+#move snake
 def go_up():
     if head.direction != "down" :
         head.direction = "up"
@@ -49,7 +49,7 @@ def go_left():
 def go_right():
     if head.direction != "left" :
         head.direction = "right"
-#move head snack
+#move head snake
 def move ():
     if head.direction == "up" :
         y = head.ycor()
@@ -63,13 +63,13 @@ def move ():
     if head.direction == "right" :
         x = head.xcor()
         head.setx(x+20)
-#keys for control the snack
+#keys for control the snake
 wn.listen()
 wn.onkeypress(go_up, "w")
 wn.onkeypress(go_down, "s")
 wn.onkeypress(go_left, "a")
 wn.onkeypress(go_right, "d")
-#body snack
+#body snake
 segments = []
 #ring for update the game
 while True :
@@ -86,7 +86,7 @@ while True :
         pen.clear() 
         pen.write("Score : {} High Score : {} ".format(score, high_score), align="center", font=("candara", 24, "bold"))
         delay = 0.1
-    #body snack
+    #body snake
     if head.distance(food) < 20 :
         new_segment = turtle.Turtle()
         new_segment.speed(0)
@@ -106,9 +106,9 @@ while True :
         x = random.randint(-270, 270)
         y = random.randint(-270, 270)
         food.goto(x, y)
-    #move snack
+    #move body snake
     for index in range (len(segments)-1, 0, -1):
-        #previous position of snack
+        #previous position of snake
         x = segments[index-1].xcor()
         y = segments[index-1].ycor()
         segments[index].goto(x, y)
@@ -117,7 +117,7 @@ while True :
         y = head.ycor()
         segments[0].goto(x, y)
     move()
-    #hit the head snack with body snack
+    #hit the head snake with body snake
     for segment in segments:    
         if segment.distance(head) < 20:
             time.sleep(1) 
